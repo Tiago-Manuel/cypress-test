@@ -26,6 +26,6 @@ jobs:
         env:
           CI: true
 
-      - name: Run Cypress tests
-        run: npx cypress run --config video=false,screenshotOnRunFailure=false
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
   
