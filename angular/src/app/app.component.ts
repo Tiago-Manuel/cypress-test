@@ -9,4 +9,4 @@ export class AppComponent {
   title = 'angular';
 }
 
-"string"
+"string hello"
