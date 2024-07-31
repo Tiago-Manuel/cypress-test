@@ -20,8 +20,9 @@ jobs:
     - name: Install dependencies
       run: yarn
 
-    - name: Cypress run
-  uses: cypress-io/github-action@v6
+    - name: Cypress.io
+      uses: cypress-io/github-action@v6.7.2
+            
 
     - name: Build
       run: npm run build:prod
