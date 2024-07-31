@@ -17,14 +17,31 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+        
+      - name: Navigate to angular directory
+        run: cd angular
 
       - name: Install dependencies
         run: yarn install
+        working-directory: ./angular
 
       - name: Start the application
         run: yarn start &
+        working-directory: ./angular
         env:
           CI: true
 
+      - name: Wait for application to be ready
+        run: |
+          # Wait for the application to be ready
+          for i in `seq 1 10`; do
+            curl -sSf http://localhost:4200 && break
+            sleep 5
+          done
+        working-directory: ./angular
+
       - name: Run Cypress tests
-        run: npx cypress run --config-file angular/cypress.config.ts
+        run: npx cypress run
+        working-directory: ./angular
+        env:
+          CYPRESS_baseUrl: http://localhost:4200
