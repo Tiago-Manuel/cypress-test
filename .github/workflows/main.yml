@@ -1,4 +1,4 @@
-name: Run Cypress Tests on PR to dev
+name: Run Cypress Tests on PR to deve
 
 on:
   pull_request:
