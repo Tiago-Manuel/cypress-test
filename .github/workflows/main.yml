@@ -75,3 +75,4 @@ jobs:
         working-directory: ./angular
         env:
           CYPRESS_baseUrl: http://localhost:4200
+
