@@ -21,13 +21,8 @@ jobs:
       - name: Navigate to dotnet directory
         run: cd server/server
 
-      - name: Add custom CA certificate
-        run: |
-          sudo cp my-custom-ca.pem /usr/local/share/ca-certificates/my-custom-ca.crt
-          sudo update-ca-certificates
-    
-      - name: Make cURL request
-        run: curl --cacert /path/to/my-custom-ca.pem https://yourserver.com
+      
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
