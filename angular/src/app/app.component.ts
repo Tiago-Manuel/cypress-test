@@ -20,11 +20,11 @@ export class AppComponent implements OnInit {
   }
 
   getWeather() {
-    this.http.get('https://localhost:7019/WeatherForecast/Get').subscribe(res => {
+    this.http.get('https://localhost:44344/WeatherForecast/Get').subscribe(res => {
       this.weather = res;
     })
 
-    this.http.get('https://localhost:7019/WeatherForecast/GetNumber').subscribe( data => {
+    this.http.get('https://localhost:44344/WeatherForecast/GetNumber').subscribe( data => {
       console.log(data.toString())
       this.number = data.toString();
     })
