@@ -67,7 +67,7 @@ jobs:
         run: |
           # Wait for the Angular application to be ready
           for i in `seq 1 10`; do
-            curl -sSf http://localhost:4200 && break
+            curl -sSf https://localhost:4200 && break
             sleep 5
           done
         working-directory: ./angular
@@ -76,5 +76,5 @@ jobs:
         run: npx cypress run
         working-directory: ./angular
         env:
-          CYPRESS_baseUrl: http://localhost:4200
+          CYPRESS_baseUrl: https://localhost:4200
 
