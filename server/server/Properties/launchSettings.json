@@ -13,8 +13,9 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
+      "sslPort": 44344,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5058",
+      "applicationUrl": "https://localhost:44344",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -23,6 +24,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
+      "sslPort": 44344,
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7019;http://localhost:5058",
       "environmentVariables": {
@@ -33,6 +35,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
+      "sslPort": 44344,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

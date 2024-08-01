@@ -227,6 +227,9 @@
       </svg>
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
+      <button id="weather" (click)="getWeather()">Get weather</button>
+
+      <h1 id="number">{{number}}</h1>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">

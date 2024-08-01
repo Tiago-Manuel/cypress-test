@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '18.13.0'
 
+      - name: Navigate to dotnet directory
+        run: cd server/server
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
@@ -25,15 +28,15 @@ jobs:
 
       - name: Install .NET dependencies
         run: dotnet restore
-        working-directory: ./server
+        working-directory: ./server/server
 
       - name: Build .NET project
         run: dotnet build --no-restore
-        working-directory: ./server
+        working-directory: ./server/server
 
       - name: Start .NET server
-        run: dotnet run --no-build &
-        working-directory: ./server
+        run: dotnet watch  &
+        working-directory: ./server/server
         env:
           ASPNETCORE_ENVIRONMENT: Development
 
@@ -41,7 +44,7 @@ jobs:
         run: |
           # Wait for the .NET server to be ready
           for i in `seq 1 10`; do
-            curl -sSf http://localhost:44344 && break
+            curl -sSf https://localhost:44344 && break
             sleep 5
           done
 
@@ -62,7 +65,7 @@ jobs:
         run: |
           # Wait for the Angular application to be ready
           for i in `seq 1 10`; do
-            curl -sSf http://localhost:4200 && break
+            curl -sSf https://localhost:4200 && break
             sleep 5
           done
         working-directory: ./angular
@@ -71,4 +74,5 @@ jobs:
         run: npx cypress run
         working-directory: ./angular
         env:
-          CYPRESS_baseUrl: http://localhost:4200
+          CYPRESS_baseUrl: https://localhost:4200
+
