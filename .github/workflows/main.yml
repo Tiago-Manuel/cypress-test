@@ -1,4 +1,4 @@
-name: Run Cypress Tests on PR to dev 
+name: Run Cypress Tests on PR to dev
 
 on:
   pull_request:
@@ -17,23 +17,50 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '18.13.0'
-        
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '7.x'
+
+      - name: Install .NET dependencies
+        run: dotnet restore
+        working-directory: ./server
+
+      - name: Build .NET project
+        run: dotnet build --no-restore
+        working-directory: ./server
+
+      - name: Start .NET server
+        run: dotnet run --no-build &
+        working-directory: ./server
+        env:
+          ASPNETCORE_ENVIRONMENT: Development
+
+      - name: Wait for .NET server to be ready
+        run: |
+          # Wait for the .NET server to be ready
+          for i in `seq 1 10`; do
+            curl -sSf http://localhost:44344 && break
+            sleep 5
+          done
+
       - name: Navigate to angular directory
         run: cd angular
 
-      - name: Install dependencies
+      - name: Install Angular dependencies
         run: yarn install
         working-directory: ./angular
 
-      - name: Start the application
+      - name: Start Angular application
         run: yarn start &
         working-directory: ./angular
         env:
           CI: true
 
-      - name: Wait for application to be ready
+      - name: Wait for Angular application to be ready
         run: |
-          # Wait for the application to be ready
+          # Wait for the Angular application to be ready
           for i in `seq 1 10`; do
             curl -sSf http://localhost:4200 && break
             sleep 5
@@ -45,4 +72,3 @@ jobs:
         working-directory: ./angular
         env:
           CYPRESS_baseUrl: http://localhost:4200
-  
