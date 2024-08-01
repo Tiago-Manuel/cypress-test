@@ -35,7 +35,7 @@ jobs:
         working-directory: ./server/server
 
       - name: Start .NET server
-        run: dotnet run --no-build &
+        run: dotnet run &
         working-directory: ./server/server
         env:
           ASPNETCORE_ENVIRONMENT: Development
@@ -44,7 +44,7 @@ jobs:
         run: |
           # Wait for the .NET server to be ready
           for i in `seq 1 10`; do
-            curl -sSf https://localhost:44344 && break
+            curl -sSf https://localhost:7019 && break
             sleep 5
           done
 
