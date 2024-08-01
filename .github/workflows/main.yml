@@ -21,6 +21,13 @@ jobs:
       - name: Navigate to dotnet directory
         run: cd server/server
 
+      - name: Add custom CA certificate
+        run: |
+          sudo cp my-custom-ca.pem /usr/local/share/ca-certificates/my-custom-ca.crt
+          sudo update-ca-certificates
+    
+      - name: Make cURL request
+        run: curl --cacert /path/to/my-custom-ca.pem https://yourserver.com
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
@@ -65,7 +72,7 @@ jobs:
         run: |
           # Wait for the Angular application to be ready
           for i in `seq 1 10`; do
-            curl -sSf https://localhost:4200 && break
+            curl -sSf http://localhost:4200 && break
             sleep 5
           done
         working-directory: ./angular
@@ -74,5 +81,5 @@ jobs:
         run: npx cypress run
         working-directory: ./angular
         env:
-          CYPRESS_baseUrl: https://localhost:4200
+          CYPRESS_baseUrl: http://localhost:4200
 
