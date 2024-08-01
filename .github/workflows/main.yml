@@ -19,8 +19,8 @@ jobs:
           node-version: '18.13.0'
 
       - name: Navigate to dotnet directory
-        run: cd server
-        
+        run: cd server/server
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
@@ -28,15 +28,15 @@ jobs:
 
       - name: Install .NET dependencies
         run: dotnet restore
-        working-directory: ./server
+        working-directory: ./server/server
 
       - name: Build .NET project
         run: dotnet build --no-restore
-        working-directory: ./server
+        working-directory: ./server/server
 
       - name: Start .NET server
         run: dotnet run --no-build &
-        working-directory: ./server
+        working-directory: ./server/server
         env:
           ASPNETCORE_ENVIRONMENT: Development
 
