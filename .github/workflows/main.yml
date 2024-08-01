@@ -25,15 +25,15 @@ jobs:
 
       - name: Install .NET dependencies
         run: dotnet restore
-        working-directory: ./dotnet-backend
+        working-directory: ./server
 
       - name: Build .NET project
         run: dotnet build --no-restore
-        working-directory: ./dotnet-backend
+        working-directory: ./server
 
       - name: Start .NET server
         run: dotnet run --no-build &
-        working-directory: ./dotnet-backend
+        working-directory: ./server
         env:
           ASPNETCORE_ENVIRONMENT: Development
 
