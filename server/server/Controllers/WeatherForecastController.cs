@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -28,6 +28,12 @@ namespace server.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet(Name = "GetTestNumber")]
+        public int GetNumber()
+        {
+            return 25;
         }
     }
 }
