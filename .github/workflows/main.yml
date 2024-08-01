@@ -21,8 +21,6 @@ jobs:
       - name: Navigate to dotnet directory
         run: cd server/server
 
-      
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
