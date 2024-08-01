@@ -15,7 +15,7 @@
       "launchBrowser": true,
       "sslPort": 44344,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5058",
+      "applicationUrl": "https://localhost:44344",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
