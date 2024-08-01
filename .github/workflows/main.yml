@@ -35,7 +35,7 @@ jobs:
         working-directory: ./server/server
 
       - name: Start .NET server
-        run: dotnet run -- launch-profile IIS Express  &
+        run: dotnet watch  &
         working-directory: ./server/server
         env:
           ASPNETCORE_ENVIRONMENT: Development
