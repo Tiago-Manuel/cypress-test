@@ -44,7 +44,7 @@ jobs:
         run: |
           # Wait for the .NET server to be ready
           for i in `seq 1 10`; do
-            curl -sSf http://localhost:7019 && break
+            curl -sSf http://localhost:44344 && break
             sleep 5
           done
 
